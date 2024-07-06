@@ -1,2 +1,2 @@
-# imfunniee.github.io
+# jeanpeic.github.io
 personal portfolio website and projects
