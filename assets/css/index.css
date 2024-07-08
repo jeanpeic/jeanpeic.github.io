@@ -114,7 +114,7 @@ header li img {
 
 #main button {
   font-family: Coyote, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   padding: 10px 2vw;
   border: 2px solid #2da78d;
   border-radius: 50px;
@@ -215,6 +215,12 @@ a:focus {
 }
 
 
+.wedding {
+  position: relative;
+  /* max-width: calc(80% - 20px); */
+  max-width: 200px;
+}
+
 
 .gallery {
   display: flex;
@@ -225,9 +231,9 @@ a:focus {
 }
 
 .gallery-item {
-  flex: 1 1 calc(25% - 20px); /* Adjust to fit 4 items per row, minus margins */
+  flex: 1 1 calc(50% - 20px); /* Adjust to fit 4 items per row, minus margins */
   max-width: calc(25% - 20px);
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   position: relative;
   margin-bottom: 20px;
 }
