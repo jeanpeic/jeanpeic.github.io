@@ -3,21 +3,29 @@
   src: url(../font/Coyote.ttf);
 }
 
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../font/Satoshi-Regular.otf');
+}
+
 body {
   padding: 0;
   margin: 0;
-  background: #0d060b;
+  background: #000000;
   max-width: 100vw;
-  overflow: hidden;
+  /* overflow-x: hidden; */
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
 header {
-  width: 92vw;
+  width: 84vw;
   padding: 4vh 0 4vh 0;
   position: fixed;
   top: 0;
-  /* background-color: #000; */
+  transition: background 0.5s ease-in-out;
+  background: linear-gradient(to bottom, #000000 40%, #000000c7 70%, #00000000 100%);
+  z-index: 1000;
 }
 
 header ul {
@@ -35,8 +43,9 @@ header li a {
   display: block;
   color: #fff;
   text-align: center;
-  padding: 10px 10px;
-  margin-left: 3vw;
+  /* padding: 10px 10px; */
+  margin: 10px;
+  margin-left: calc(3vw + 10px);
   text-decoration: none;
   position: relative;
 }
@@ -75,23 +84,25 @@ header li img {
   color: white;
   font-size: 28px;
   cursor: pointer;
-  transition: 0.4s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 #muteButton:hover, #unmuteButton:hover {
-  color: #2da78d;
+  /* color: #2da78d; */
   cursor: pointer;
+  /* background-color: #ffffff; */
+  transform: scale(1.07);
 }
 
 #main {
-  width: 92vw;
-  padding: 0 4vw;
-  height: 100vh;
+  width: 84vw;
+  padding: 0 8vw;
+  min-height: 100vh;
   font-family: Coyote, sans-serif;
   color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   z-index: 2;
   position: relative;
   background: radial-gradient(rgba(13, 6, 11, 0), rgba(13, 6, 11, 1));
@@ -102,17 +113,38 @@ header li img {
 }
 
 #main .bio {
-  padding: 0;
-  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  /* max-width: 800px; */
+  padding: 30px;
+  margin: 10px;
+  font-family: 'Satoshi';
   font-size: 20px;
 }
 
-#main div {
-  margin: 30px 0 0 0;
-  font-size: 55px;
+#main .bio h1 {
+  text-align: center;
+  /* max-width: 800px; */
+  margin: -30px 0 0px -0px;
+
+  font-family: 'Coyote';
+  font-size: 65px;
+}
+#main .bio div {
+  padding: 4px 0px 3px 0px;
+}
+#main .bio a {
+  color: #ffffff;
+}
+#main .bio a:hover {
+  color: #000000;
 }
 
-#main button {
+/* #main div {
+  margin: 30px 0 0 0;
+  font-size: 55px;
+} */
+
+/* #main button {
   font-family: Coyote, sans-serif;
   font-size: 16px;
   padding: 10px 2vw;
@@ -135,7 +167,7 @@ header li img {
   transform: scale(0.6);
   background: #2da78d;
   border: 2px solid #2da78d;
-}
+} */
 
 #main span {
   font-size: 19px;
@@ -143,7 +175,7 @@ header li img {
 }
 
 footer {
-  width: 92vw;
+  width: 84vw;
   padding: 4vh 0;
   position: absolute;
   bottom: 0;
@@ -164,7 +196,7 @@ footer li a {
   display: block;
   color: #fff;
   text-align: center;
-  padding: 10px 10px;
+  padding: 3px 10px;
   margin-left: 3vw;
   text-decoration: none;
   font-size: 17px;
@@ -180,8 +212,10 @@ a {
 }
 
 a:hover {
-  color: #2da78d;
+  /* color: #2da78d; */
   cursor: pointer;
+  background-color: #ffffff;
+  color: #000;
 }
 
 button:focus {
@@ -214,75 +248,124 @@ a:focus {
   background: #fff;
 }
 
-
-.wedding {
-  position: relative;
-  /* max-width: calc(80% - 20px); */
-  max-width: 200px;
+#content {
+  display: inline-block;
+  padding: 12vh 0 12vh 0;
+  /* justify-content: start; */
 }
 
+.portfolio {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+}
 
-.gallery {
+.portfolio-nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.portfolio-nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.portfolio-nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    position: relative;
+}
+
+.portfolio-nav ul li a:hover {
+  /* color: #2da78d; */
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #000;
+}
+
+.portfolio-nav ul li a.active, .portfolio-nav ul li a:hover {
+    font-weight: bold;
+}
+
+.portfolio-nav ul li a.active::after, .portfolio-nav ul li a:hover::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.portfolio-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
-  padding: 20px 0;
 }
 
-.gallery-item {
-  flex: 1 1 calc(50% - 20px); /* Adjust to fit 4 items per row, minus margins */
-  max-width: calc(25% - 20px);
-  /* box-sizing: border-box; */
-  position: relative;
-  margin-bottom: 20px;
+.portfolio-item {
+  position: relative; /* Ensure relative positioning for the overlay */
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
-.gallery-item img,
-.gallery-item video {
+.portfolio-item.hidden {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.portfolio-item img {
   width: 100%;
   height: auto;
-  border: 2px solid #fff;
-  border-radius: 5px;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.2s ease-in-out; /* Add transform transition */
 }
 
-.gallery-item p {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #ccc;
-  text-align: center;
+.portfolio-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease-in-out; /* Add transform transition */
+}
+
+.portfolio-item:hover img,
+.portfolio-item:hover .overlay {
+  transform: scale(1.02); /* Slightly enlarge image and overlay */
+  cursor: pointer;
+}
+
+.portfolio-item:hover .overlay {
+  opacity: 1;
 }
 
 /* Media Queries for Responsive Design */
-@media (max-width: 1200px) {
-  .gallery-item {
-    flex: 1 1 calc(33.33% - 20px); /* 3 items per row on medium screens */
-    max-width: calc(33.33% - 20px);
+@media (max-width: 1080px) {
+  .portfolio-item {
+      flex: 1 1 calc(50% - 20px);
+      max-width: calc(50% - 20px);
   }
 }
 
-@media (max-width: 768px) {
-  .gallery-item {
-    flex: 1 1 calc(50% - 20px); /* 2 items per row on small screens */
-    max-width: calc(50% - 20px);
-  }
-}
-
-@media (max-width: 480px) {
-  .gallery-item {
-    flex: 1 1 calc(100% - 20px); /* 1 item per row on extra small screens */
-    max-width: calc(100% - 20px);
-  }
-}
-
-@media (max-width: 1800px) {
-  #main button {
-    width: 16vw;
+@media (max-width: 720px) {
+  .portfolio-item {
+      flex: 1 1 100%;
+      max-width: 100%;
   }
 }
 
 @media (max-width: 950px) {
-  #main,
+  
 
   #video {
     position: fixed;
