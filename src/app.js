@@ -2,6 +2,7 @@ $(function() {
   // Function to load content dynamically
   function loadContent(url) {
     if (url === 'src/start.html') {
+      $('body').css('overflow', 'hidden'); // Hide overflow on start page
       $('#content').fadeOut(300, function() {
         $('#content').empty();
         $('#start').fadeOut(300, function() {
@@ -14,6 +15,7 @@ $(function() {
         });
       });
     } else {
+      $('body').css('overflow', 'auto'); // Set overflow to auto for other pages
       $('#start').fadeOut(300, function() {
         $('#start').empty();
         $('#content').fadeOut(300, function() {
