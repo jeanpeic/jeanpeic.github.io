@@ -392,7 +392,7 @@ a:focus {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
 
   .portfolio-item {
     flex: 1 1 100%;
@@ -427,5 +427,9 @@ a:focus {
 
   .navLinks.show {
     display: flex;
+  }
+
+  footer {
+    margin-bottom: 40px; /* Increase margin to ensure footer is visible above the search bar */
   }
 }
