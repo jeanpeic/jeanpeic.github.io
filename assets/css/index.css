@@ -430,6 +430,15 @@ a:focus {
   }
 
   footer {
-    margin-bottom: 40px; /* Increase margin to ensure footer is visible above the search bar */
+    margin-bottom: 50px; /* Increase margin to ensure footer is visible above the search bar */
+  }
+
+  #main .bio h1 {
+    text-align: center;
+    /* max-width: 800px; */
+    margin: -15px 0 0px -0px;
+  
+    font-family: 'Coyote';
+    font-size: 35px;
   }
 }
