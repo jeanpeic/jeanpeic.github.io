@@ -24,12 +24,15 @@ $(function() {
             $('header').css('background', 'linear-gradient(to bottom, #000000 40%, #000000c7 70%, #00000000 100%)'); // Apply gradient background
             hideVolume();  // Hide volume controls
             setupFiltering();  // Setup filtering after loading content
+            if (url === 'src/videos.html') {
+              setupVideoOverlay(); // Setup video overlay after loading content
+            }
           });
         });
       });
     }
   }
-  
+
   // Initial load
   loadContent('src/start.html');
 
@@ -149,4 +152,31 @@ function setupVideoControls() {
       });
     });
   }
+
+    // Function to setup video overlay
+    function setupVideoOverlay() {
+      console.log('YES');
+      var portfolioItems = document.querySelectorAll('.portfolio-item');
+      var videoOverlay = document.getElementById('videoOverlay');
+      var videoFrame = document.getElementById('videoFrame');
+  
+      // Show video overlay when portfolio image is clicked
+      portfolioItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          var videoUrl = item.getAttribute('data-video');
+          console.log(item);
+          console.log(videoUrl);
+          videoFrame.src = videoUrl;
+          videoOverlay.classList.add('active');
+        });
+      });
+  
+      // Hide video overlay when clicking outside the video container
+      videoOverlay.addEventListener('click', function(e) {
+        if (e.target === videoOverlay) {
+          videoOverlay.classList.remove('active');
+          videoFrame.src = ""; // Stop the video when closing
+        }
+      });
+    }
 });

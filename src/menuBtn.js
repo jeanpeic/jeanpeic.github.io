@@ -24,4 +24,37 @@ document.addEventListener('DOMContentLoaded', function() {
       navLinks.classList.remove('show');
     }
   });
+
+  var videoOverlay = document.getElementById('videoOverlay');
+  var videoFrame = document.getElementById('videoFrame');
+
+  menuBtn.addEventListener('click', function() {
+    navLinks.classList.toggle('show');
+  });
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 1080) {
+      navLinks.style.display = '';
+      navLinks.classList.remove('show', 'fade-in', 'fade-out');
+    }
+  });
+
+  function initializeVideoEventListeners() {
+    var portfolioItems = document.querySelectorAll('.portfolio-img');
+
+    portfolioItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        var videoUrl = item.getAttribute('data-video');
+        videoFrame.src = videoUrl;
+        videoOverlay.classList.add('active');
+      });
+    });
+
+    videoOverlay.addEventListener('click', function(e) {
+      if (e.target === videoOverlay) {
+        videoOverlay.classList.remove('active');
+        videoFrame.src = ""; // Stop the video when closing
+      }
+    });
+  }
 });
