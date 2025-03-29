@@ -289,7 +289,7 @@
       height: auto;
       display: block;
     }
-  
+    
     @media (max-width: 1280px) {
       .name-image {
         max-width: 85%;
@@ -308,7 +308,13 @@
         padding: 10px 20vw 35px;
       }
     }
-  
+    
+    @media (max-height: 768px) {
+      .scroll-indicator {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {     
       .videography-link {
         top: 20px;
@@ -330,10 +336,20 @@
       .bio-section {
         padding: 10px 10vw;
       }
+
+      .bio-heading {
+        font-size: 24px;
+      }
+
+      .bio-text {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 40px;
+      }
       
       .nickname {
         bottom: 100px;
-        right: 20px;
+        right: 30px;
         font-size: 14px;
       }
       
@@ -368,15 +384,19 @@
       .research-section {
         padding: 10px 10vw 30px;
       }
+
+      .research-heading {
+        font-size: 24px;
+      }
       
       .publication-title {
-        font-size: 19px;
+        font-size: 16px;
       }
       
       .publication-authors,
       .publication-venue,
       .publication-links {
-        font-size: 15px;
+        font-size: 14px;
       }
     }
   </style>
