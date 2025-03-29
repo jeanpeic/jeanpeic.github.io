@@ -110,4 +110,12 @@
     flex: 100%;
     padding-right: 0;
   }
-} 
+
+  .footer-text {
+    font-size: 14px;
+  }
+
+  .footer-links {
+    font-size: 14px;
+  }
+}
