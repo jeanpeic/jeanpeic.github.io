@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jean-Peïc Chou | Videography</title>
+  <link rel="icon" href="assets/icon/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="src/app.js"></script>
+  
+  <!-- Footer CSS -->
+  <link rel="stylesheet" href="src/footer.css">
+  
+  <style>
+    @font-face {
+      font-family: 'Reenie Beanie';
+      src: url('assets/font/ReenieBeanie-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: rgb(0, 0, 0);
+      color: #f5f5f5;
+      min-height: 100vh;
+      padding-top: 20px;
+      position: relative;
+    }
+    
+    .home-link {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      text-decoration: none;
+      color: #f5f5f5;
+      font-size: 16px;
+      z-index: 100;
+      transition: all 0.3s ease;
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+    
+    .home-link:hover {
+      color: #333;
+      border-bottom-color: transparent;
+      background-color: #f5f5f5;
+    }
+    
+    .hero-section {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .title-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 0;
+      margin-top: -20px;
+    }
+    
+    .title-image {
+      max-width: 70%;
+      height: auto;
+      margin-top: 0px;
+      padding: 0;
+    }
+    
+    .content-section {
+      padding: 0 0;
+    }
+
+    .showreel {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0; overflow: hidden;
+        max-width: 100%; height: auto;
+        margin-bottom: 30px;
+    }
+    .showreel iframe, .embed-container object, .embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .portfolio-section {
+      margin-top: 30px;
+    }
+    
+    .portfolio-nav {
+      margin: 30px 0;
+    }
+    
+    .portfolio-nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+    
+    .portfolio-nav ul li {
+      margin: 0 15px 10px;
+    }
+    
+    .portfolio-nav ul li a {
+      text-decoration: none;
+      color: #999;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .portfolio-nav ul li a:hover,
+    .portfolio-nav ul li a.active {
+      color: #f5f5f5;
+      position: relative;
+    }
+    
+    .portfolio-nav ul li a.active:after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #f5f5f5;
+    }
+    
+    .portfolio-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+    
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      cursor: pointer;
+      background-color: #111;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+    }
+    
+    .portfolio-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    
+    .portfolio-item .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .portfolio-item:hover .overlay {
+      opacity: 1;
+    }
+    
+    .portfolio-item:hover img:not(.overlay) {
+      transform: scale(1.02);
+    }
+    
+    .portfolio-item.hidden {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .video-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .video-container {
+      width: 90%;
+      max-width: 1280px;
+      position: relative;
+    }
+    
+    .video-container iframe {
+      width: 100%;
+      height: 56.25vw;
+      max-height: 720px;
+      border: none;
+      background-color: #000;
+    }
+    
+    .close-button {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1001;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+    
+    .close-button:hover {
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 1280px) {
+      .title-image {
+        max-width: 90%;
+      }
+
+      .portfolio-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .home-link {
+        top: 40px;
+        right: 40px;
+        font-size: 14px;
+        padding: 7px 12px;
+      }
+      
+      .tagline {
+        font-size: 14px;
+        margin-top: 15px;
+        padding: 0 20px;
+      }
+      
+      .content-section {
+        padding: 0 0;
+      }
+      
+      .divider-image {
+        max-width: 95%;
+      }
+      
+      .portfolio-nav ul li {
+        margin: 0 10px 10px;
+      }
+      
+      .portfolio-nav ul li a {
+        font-size: 14px;
+      }
+      
+      .portfolio-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .scroll-indicator {
+        bottom: 40px;
+        font-size: 14px;
+      }
+      
+      .scroll-indicator i,
+      .arrow-icon {
+        font-size: 16px;
+        width: 20px;
+      }
+    }
+    
+    .tagline {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #f5f5f5;
+      width: 100%;
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #f5f5f5;
+      font-size: 16px;
+    }
+    
+    .scroll-indicator p {
+      margin-bottom: 5px;
+      font-weight: 300;
+    }
+    
+    .scroll-indicator i {
+      font-size: 20px;
+    }
+    
+    .arrow-icon {
+      width: 24px;
+      height: auto;
+      margin-top: 5px;
+    }
+    
+    .coming-soon-container {
+      width: 100%;
+      height: 56.25vw;
+      max-height: 720px;
+      background-color: #000;
+      border: 2px solid #fff;
+      position: relative;
+      display: none;
+    }
+    
+    .coming-soon-message {
+      font-family: 'Reenie Beanie', cursive;
+      color: #fff;
+      font-size: 64px;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 0 20px;
+    }
+    
+    .section-divider {
+      width: 100%;
+      text-align: center;
+    }
+    
+    .divider-image {
+      max-width: 80%;
+      height: auto;
+    }
+    
+    /* Responsive font sizes */
+    @media (max-width: 768px) {
+      .coming-soon-message {
+        font-size: 42px;
+      }
+    }
+    
+    @media (max-height: 600px) {
+      .coming-soon-message {
+        font-size: 36px;
+      }
+    }
+    
+    /* For very small screens */
+    @media (max-width: 480px) {
+      .coming-soon-message {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body class="dark-theme">
+  <a href="index.html" class="home-link"><i class="fas fa-graduation-cap"></i> Switch to school stuff</a>
+  
+  <div class="hero-section">
+    <div class="title-container">
+      <img src="assets/scribbles/videography.png" alt="Videography" class="title-image">
+      <div class="tagline" style="visibility: hidden; height: 58px;">
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <p>showreel below</p>
+      <img src="assets/scribbles/arrow_white.png" alt="Scroll down arrow" class="arrow-icon">
+    </div>
+  </div>
+  
+  <div class="content-section">
+    <div class="showreel">
+      <iframe src="https://player.vimeo.com/video/1070504277?h=11d7a93708&autoplay=1&muted=1&controls=1&loop=0&autopause=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <div class="section-divider">
+      <img src="assets/scribbles/showreel-portfolio-text.png" alt="Showreel Portfolio Divider" class="divider-image">
+    </div>
+    
+    <div class="portfolio-section">
+    <nav class="portfolio-nav">
+      <ul>
+          <li><a class="active" data-filter="all">All</a></li>
+          <li><a data-filter="feature">Feature</a></li>
+          <li><a data-filter="documentary">Documentary</a></li>
+          <li><a data-filter="wedding">Wedding</a></li>
+          <li><a data-filter="ads">Ads</a></li>
+          <li><a data-filter="web">Web</a></li>
+      </ul>
+    </nav>
+    
+    <!-- La La Land -->
+    <div class="portfolio-gallery">
+      <div class="portfolio-item all feature" data-video="https://player.vimeo.com/video/509448486?h=f6784db65f">
+        <img src="assets/portfolio/feature-1.png" alt="feature-1">
+        <img class="overlay" src="assets/portfolio/feature-overlay-1.png">
+      </div>
+      
+      <!-- Solo.s -->
+      <div class="portfolio-item all feature" data-video="https://drive.google.com/file/d/1MKgDRPRU9myQjGDnkh6VsAg1hkOTeu47/preview">
+        <img src="assets/portfolio/feature-3.png" alt="feature-3">
+          <img class="overlay" src="assets/portfolio/feature-overlay-3.png">
+      </div>
+
+      <!-- Wedding Aurélie -->
+      <div class="portfolio-item all wedding" data-video="https://drive.google.com/file/d/1KQskv96kT6XQaKq_2xHWmK0e1_NMxUzd/preview">
+        <img src="assets/portfolio/wedding-1.png" alt="wedding-1">
+        <img class="overlay" src="assets/portfolio/wedding-overlay-1.png">
+      </div>
+
+      <!-- Vik'ura -->
+      <div class="portfolio-item all documentary" data-video="https://www.youtube.com/embed/6RvW71y4oMM?si=RpEbii7wX3FkHH1L">
+        <img src="assets/portfolio/documentary-3.png" alt="documentary-3">
+        <img class="overlay" src="assets/portfolio/documentary-overlay-3.png">
+      </div>
+
+      <!-- Chez Anatole -->
+      <div class="portfolio-item all web" data-video="https://www.youtube.com/embed/JxtpHN8oCHk?si=OjgwAz32qr1X3Cv5">
+        <img src="assets/portfolio/web-1.png" alt="web-1">
+        <img class="overlay" src="assets/portfolio/web-overlay-1.png">
+      </div>
+
+      <!-- Bordeaux -->
+      <div class="portfolio-item all web" data-video="https://www.youtube.com/embed/jmGnTUdypkk?si=hc_rtr1NQvyiYBq3">
+        <img src="assets/portfolio/web-2.png" alt="web-2">
+        <img class="overlay" src="assets/portfolio/web-overlay-2.png">
+      </div>
+      
+      <!-- Wedding Elsa & Mayeul -->
+      <div class="portfolio-item all wedding" data-video="https://drive.google.com/file/d/1kc7uyUg-jF2GXVB2DPjDn3HItimu_Iiu/preview">
+        <img src="assets/portfolio/wedding-2.png" alt="wedding-2">
+        <img class="overlay" src="assets/portfolio/wedding-overlay-2.png">
+      </div>
+
+      <!-- Uruguay -->
+      <div class="portfolio-item all documentary" data-video="https://drive.google.com/file/d/1-NvhSBULlNbo5qw4W-1EXruPeCHg5YNh/preview">
+        <img src="assets/portfolio/documentary-1.png" alt="documentary-1">
+        <img class="overlay" src="assets/portfolio/documentary-overlay-1.png">
+      </div>
+
+      <!-- Patagonia -->
+      <div class="portfolio-item all documentary" data-video="https://www.youtube.com/embed/89TspaI5IoY?si=vIwo1EIhmQl6GReM">
+        <img src="assets/portfolio/documentary-2.png" alt="documentary-2">
+        <img class="overlay" src="assets/portfolio/documentary-overlay-2.png">
+      </div>
+
+      <!-- Je suis Ludivine -->
+      <div class="portfolio-item all feature" data-video="">
+        <img src="assets/portfolio/feature-2.png" alt="feature-2">
+        <img class="overlay" src="assets/portfolio/feature-overlay-2.png">
+      </div>
+
+      <!-- Tengo Duo -->
+      <div class="portfolio-item all ads" data-video="https://drive.google.com/file/d/1p1NaaExzG8yPDk50SwiT2u05u119aC9v/preview">
+        <img src="assets/portfolio/ads-2.png" alt="ads-2">
+        <img class="overlay" src="assets/portfolio/ads-overlay-2.png">
+      </div>
+
+      <!-- Enfant@l'hopital -->
+      <div class="portfolio-item all ads" data-video="https://drive.google.com/file/d/1usaDp-Ku6a9SQVCH0OyN2QAdRKyDk6ub/preview">
+        <img src="assets/portfolio/ads-1.png" alt="ads-1">
+        <img class="overlay" src="assets/portfolio/ads-overlay-1.png">
+      </div>
+
+      <!-- Amazon -->
+      <div class="portfolio-item all documentary" data-video="">
+        <img src="assets/portfolio/documentary-4.png" alt="documentary-4">
+        <img class="overlay" src="assets/portfolio/documentary-overlay-4.png">
+      </div>
+      
+      <!-- Tech Dev Academy -->
+      <div class="portfolio-item all ads" data-video="https://drive.google.com/file/d/1ELCDxeu5rIY9mnAu6WXkFAAP1IQTBUqb/preview">
+        <img src="assets/portfolio/ads-4.png" alt="ads-4">
+        <img class="overlay" src="assets/portfolio/ads-overlay-4.png">
+      </div>
+
+      <!-- AI Trailer -->
+      <div class="portfolio-item all web" data-video="https://drive.google.com/file/d/1cpkHi8lqhS2ebFZ4Z1XJjfsKWTfLKr_P/preview">
+        <img src="assets/portfolio/web-4.png" alt="web-4">
+        <img class="overlay" src="assets/portfolio/web-overlay-4.png">
+      </div>
+
+      <!-- Paper Thin -->
+      <div class="portfolio-item all interactive">
+        <img src="assets/portfolio/interactive-1.png" alt="interactive-1">
+        <img class="overlay" src="assets/portfolio/interactive-overlay-1.png">
+      </div>
+    </div>
+  </div>
+
+      <!-- Video Overlay -->
+      <div id="videoOverlay" class="video-overlay">
+        <div class="video-container">
+      <button class="close-button">×</button>
+          <iframe id="videoFrame" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <div id="comingSoonContainer" class="coming-soon-container">
+        <div class="coming-soon-message">Available on demand</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include footer -->
+  <div id="footer-container"></div>
+
+  <script>
+    // Setup filtering and video overlay functionality
+    $(function() {
+      // Load the footer
+      $("#footer-container").load("src/footer.html");
+      
+      const filterLinks = document.querySelectorAll('.portfolio-nav ul li a');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      const videoOverlay = document.getElementById('videoOverlay');
+      const videoFrame = document.getElementById('videoFrame');
+      const closeButton = document.querySelector('.close-button');
+      const comingSoonContainer = document.getElementById('comingSoonContainer');
+      
+      // Add event listener for the close button
+      closeButton.addEventListener('click', closeVideoOverlay);
+      
+      // Add event listener for the Escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && videoOverlay.classList.contains('active')) {
+          closeVideoOverlay();
+        }
+      });
+      
+      // Function to close the video overlay
+      function closeVideoOverlay() {
+        videoOverlay.classList.remove('active');
+        // Clear the iframe source to stop the video
+        videoFrame.src = '';
+        // Hide the coming soon container
+        comingSoonContainer.style.display = 'none';
+        // Show the iframe again
+        videoFrame.style.display = 'block';
+      }
+      
+      // Setup click event on portfolio items
+      portfolioItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const videoUrl = item.getAttribute('data-video');
+          
+          // Show the overlay regardless of whether there's a video
+          videoOverlay.classList.add('active');
+          
+          if (videoUrl) {
+            // If there's a video URL, show the iframe and load the video
+            videoFrame.style.display = 'block';
+            comingSoonContainer.style.display = 'none';
+            videoFrame.src = videoUrl;
+          } else {
+            // If there's no video URL, hide the iframe and show the message
+            videoFrame.style.display = 'none';
+            comingSoonContainer.style.display = 'block';
+          }
+          
+          // Add click event to close overlay when clicking outside the video
+          videoOverlay.addEventListener('click', function(e) {
+            // Only close if clicking outside the video frame
+            if (e.target === videoOverlay) {
+              closeVideoOverlay();
+            }
+          });
+        });
+      });
+      
+      filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Remove active class from all links
+          filterLinks.forEach(link => link.classList.remove('active'));
+          
+          // Add active class to clicked link
+          link.classList.add('active');
+          
+          // Get filter value
+          const filter = link.getAttribute('data-filter');
+          
+          // Fade out all items
+          portfolioItems.forEach(item => {
+            item.classList.add('hidden');
+          });
+          
+          // After fade out, reorganize
+          setTimeout(() => {
+            portfolioItems.forEach(item => {
+              if (filter === 'all' || item.classList.contains(filter)) {
+                item.style.visibility = 'visible';
+                item.style.display = 'block';
+              } else {
+                item.style.visibility = 'hidden';
+                item.style.display = 'none';
+              }
+            });
+            
+            // After an additional delay, remove the 'hidden' class
+            setTimeout(() => {
+              portfolioItems.forEach(item => {
+                if (item.style.display === 'block') {
+                  item.classList.remove('hidden');
+                }
+              });
+            }, 100);
+          }, 250);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

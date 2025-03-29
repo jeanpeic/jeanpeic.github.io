@@ -1,0 +1,120 @@
+<!-- Footer Section -->
+<style>
+  @font-face {
+    font-family: 'Reenie Beanie';
+    src: url('../assets/font/ReenieBeanie-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .intro-text {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 52px;
+    margin-bottom: 10px;
+    color: #f5f5f5;
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <p class="intro-text">&ensp;This is it</p>
+      <p class="footer-text">If you made it to here, I don't know if you're still looking for something, but let's connect:</p>
+      <div class="footer-links">
+        <a href="mailto:jeanpeic.chou@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.linkedin.com/in/jeanpeicchou"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=y8HvtysAAAAJ&hl=en"><i class="fab fa-google"></i> Google Scholar</a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <p class="footer-text">Or draw me something:</p>
+      <canvas id="drawingCanvas" class="drawing-area"></canvas>
+      <div class="send-button-container">
+        <button id="sendButton" class="send-button">Send</button>
+        <div id="messageContainer" class="message-container"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Set up the drawing canvas
+  const canvas = document.getElementById('drawingCanvas');
+  const ctx = canvas.getContext('2d');
+  let isDrawing = false;
+  
+  // Set canvas dimensions
+  function resizeCanvas() {
+    const containerWidth = Math.min(350, canvas.parentElement.clientWidth);
+    canvas.width = containerWidth;
+    canvas.height = 150;
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#f5f5f5';
+    ctx.lineCap = 'round';
+  }
+  
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+  
+  // Drawing functions
+  function startDrawing(e) {
+    isDrawing = true;
+    draw(e);
+  }
+  
+  function stopDrawing() {
+    isDrawing = false;
+    ctx.beginPath();
+  }
+  
+  function draw(e) {
+    if (!isDrawing) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+  }
+  
+  // Add event listeners for drawing
+  canvas.addEventListener('mousedown', startDrawing);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseout', stopDrawing);
+  
+  // Touch events for mobile
+  canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousedown', {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
+  
+  canvas.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const mouseEvent = new MouseEvent('mousemove', {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
+  
+  canvas.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    const mouseEvent = new MouseEvent('mouseup', {});
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
+  
+  // Send button functionality
+  document.getElementById('sendButton').addEventListener('click', function() {
+    document.getElementById('messageContainer').innerHTML = 'Actually, just <a href="mailto:jeanpeic.chou@gmail.com">send me an email</a> :)';
+  });
+</script> 

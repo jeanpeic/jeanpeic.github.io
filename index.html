@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-  <link rel="icon" href="assets/icon/camera.jpg" type="image/jpg">
+  <link rel="icon" href="assets/icon/logo.png" type="image/png">
   <meta name="google-site-verification" content="mjFIZTxE_IKhH-lBgPwblCJ1xPugeI5RRe0qnXF10M8" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-  <meta name="theme-color" content="#000">
-  <meta name="msapplication-navbutton-color" content="#000">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#000">
-  <title>jeanpeic | videographer</title>
-  <meta name="title" content="jeanpeic | videographer">
+  <meta name="theme-color" content="#f5f5f5">
+  <meta name="msapplication-navbutton-color" content="#f5f5f5">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#f5f5f5">
+  <title>Jean-Peïc Chou</title>
+  <meta name="title" content="Jean-Peïc Chou">
   <meta name="description" content="Jean-Peïc Chou">
   <meta name="keywords"
     content="jeanpeic, Jean-Peïc, videographer, wedding, advertisement, documentary, phd student, filmmaking, computer science, stanford">
@@ -22,86 +22,455 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="language" content="English">
   <meta name="author" content="jeanpeic">
-  <link rel="stylesheet" href="./assets/css/index.css" />
-
+  
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Javascript -->
   <script src="src/app.js"></script>
-  <script src="src/menuBtn.js"></script>
+  
+  <!-- Footer CSS -->
+  <link rel="stylesheet" href="src/footer.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      overflow-x: hidden;
+      padding-top: 20px;
+      position: relative;
+    }
+    
+    .videography-link {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      z-index: 100;
+      transition: all 0.3s ease;
+      padding: 8px 15px;
+      border-radius: 20px;
+    }
+    
+    .videography-link:hover {
+      color: #f5f5f5;
+      border-bottom-color: transparent;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+    
+    .hero-section {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .name-container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 0;
+      margin-top: -20px;
+    }
+    
+    .name-image {
+      max-width: 70%;
+      height: auto;
+      margin-top: -80px;
+      padding: 0;
+    }
+    
+    .tagline {
+      text-align: center;
+      margin-top: -5px;
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #555;
+      width: 100%;
+    }
+    
+    .bio-section {
+      padding: 10px 30vw;
+    }
+    
+    .bio-text {
+      font-size: 19px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    
+    .bio-text p {
+      margin-bottom: 20px;
+    }
+    
+    .bio-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .bio-text a {
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+      padding-bottom: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .bio-text a:hover {
+      border-bottom-color: #333;
+      opacity: 0.8;
+    }
+    
+    .bio-heading {
+      text-align: center;
+      margin: 0 0 30px 0;
+      font-weight: 300;
+      font-size: 32px;
+    }
+    
+    /* Research section styling */
+    .research-section {
+      padding: 10px 30vw 40px;
+    }
+    
+    .research-heading {
+      text-align: center;
+      margin: 0 0 30px 0;
+      font-weight: 300;
+      font-size: 32px;
+    }
+    
+    .publication-list {
+      list-style-type: none;
+    }
+    
+    .publication {
+      margin-bottom: 30px;
+    }
+    
+    .publication-title {
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+    
+    .publication-authors {
+      font-size: 17px;
+      margin-bottom: 5px;
+      color: #555;
+      padding-left: 20px;
+    }
+    
+    .publication-venue {
+      font-size: 17px;
+      font-style: italic;
+      margin-bottom: 5px;
+      padding-left: 20px;
+    }
+    
+    .publication-links {
+      font-size: 17px;
+      padding-left: 20px;
+    }
+    
+    .publication-links a {
+      color: #333;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+      padding-bottom: 2px;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .publication-links a:hover {
+      border-bottom-color: #333;
+      opacity: 0.8;
+    }
+    
+    .nickname {
+      position: absolute;
+      bottom: 40px;
+      left: auto;
+      right: 40px;
+      font-size: 16px;
+      font-style: italic;
+      color: #777;
+      border-bottom: none;
+      padding-bottom: 0;
+      transition: none;
+      text-decoration: none;
+    }
+    
+    .nickname:hover {
+      opacity: 1;
+      border-bottom-color: transparent;
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #777;
+      font-size: 16px;
+    }
+    
+    .scroll-indicator p {
+      margin-bottom: 5px;
+      font-weight: 300;
+    }
+    
+    .scroll-indicator i {
+      font-size: 20px;
+    }
+    
+    .arrow-icon {
+      width: 24px;
+      height: auto;
+      margin-top: 5px;
+    }
+    
+    .banner-section {
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .banner-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .workplace-section {
+      padding-left: 10%;
+      width: 100%;
+    }
+    
+    .workplace-image {
+      width: 400px;
+      height: auto;
+      display: block;
+    }
+    
+    /* CSS for the comment section */
+    .comment-section {
+      width: 100%;
+      position: relative;
+      margin-bottom: 0px;
+      margin-top: -35px;
+    }
+    
+    .comment-container {
+      position: relative;
+      left: 54%;
+      transform: translateX(0);
+    }
+    
+    .comment-image {
+      width: 370px;
+      height: auto;
+      display: block;
+    }
+  
+    @media (max-width: 1280px) {
+      .name-image {
+        max-width: 85%;
+      }
+
+      .tagline {
+        font-size: 21px;
+        margin-top: 0px;
+        padding: 0 20px;
+      }
+      .bio-section {
+        padding: 10px 20vw;
+      }
+
+      .research-section {
+        padding: 10px 20vw 35px;
+      }
+    }
+  
+    @media (max-width: 768px) {     
+      .name-image {
+        max-width: 95%;
+      }
+
+      .tagline {
+        font-size: 15px;
+        margin-top: 0px;
+        padding: 0 20px;
+      }
+      
+      .bio-section {
+        padding: 10px 10vw;
+      }
+      
+      .videography-link {
+        top: 40px;
+        right: 40px;
+        font-size: 14px;
+        padding: 7px 12px;
+      }
+      
+      .nickname {
+        bottom: 40px;
+        right: 40px;
+        font-size: 14px;
+      }
+      
+      .scroll-indicator {
+        bottom: 40px;
+        font-size: 14px;
+      }
+      
+      .scroll-indicator i,
+      .arrow-icon {
+        font-size: 16px;
+        width: 20px;
+      }
+      
+      .workplace-section {
+        padding-left: 8%;
+      }
+      
+      .workplace-image {
+        width: 50%;
+      }
+      
+      .comment-section {
+        margin-bottom: 0px;
+        margin-top: -35px;
+      }
+      
+      .comment-image {
+        width: 50%;
+      }
+      
+      .research-section {
+        padding: 10px 10vw 30px;
+      }
+      
+      .publication-title {
+        font-size: 19px;
+      }
+      
+      .publication-authors,
+      .publication-venue,
+      .publication-links {
+        font-size: 15px;
+      }
+    }
+  </style>
 
 </head>
 
-<body style="background-color: black;">
-  <div class="start" id="start">
-  <!-- Start video will be loaded here -->  
-  </div>
-
+<body class="light-theme">
+  <a href="videos.html" class="videography-link"><i class="fas fa-camera"></i> View videography</a>
   
-  <div id="main">
-    <!-- Header -->
-    <header>
-      <nav>
-          <ul>
-            <li style="float:left;">
-              <!-- <a class="swipe" href="src/start.html" tabindex="0">JEANPEIC</a> -->
-                <a style="font-size: 30px; margin-top: -5px; margin-left: 0px" href="src/start.html" tabindex="0">JEANPEIC</a></li>      
-            </li>
-            
-            <div class="navLinks" id="navLinks">
-                <!-- <li><a class="swipe" href="mailto:jeanpeic.chou@gmail.com" tabindex="4">contact</a></li> -->
-              <li><a class="swipe" tabindex="4" href="src/info.html">info</a></li>
-              <li><a class="swipe" tabindex="3" href="src/research.html">research</a></li>
-              <li><a class="swipe" tabindex="2" href="src/videos.html">videos</a></li>
-            </div>
-            
-            <div class="navButton" id="navButton">
-              <li><i class="fas fa-bars"></i></li>
-            </div>
-          </ul>
-          
-      </nav>
-    </header>
-  
-      <div class="content" id="content">
-        <!-- Content will be loaded here dynamically -->                
-
+  <div class="hero-section">
+    <div class="name-container">
+      <img src="assets/scribbles/jeanpeic.png" alt="Jean-Peïc Chou" class="name-image">
+      <div class="tagline">
+        <p>PhD student in Computer Science at Stanford</p>
+        <p>& Tech Curator at the Busan International Film Festival</p>
       </div>
-
-    <!-- Footer -->
-    <footer>
-      <ul>
-        <!-- <li style="float:left">
-          <button onclick="window.location = 'mailto:imfunniee@gmail.com'">hire me</button>
-        </li> -->
-
-        <!-- Volume -->
-        <i class="fas fa-volume-mute" id="muteButton" ></i>
-        <i class="fas fa-volume-up" id="unmuteButton" style="display:none;"></i>    
-        
-        <li style="margin-right:10px;">
-          <a href="https://scholar.google.com/citations?user=y8HvtysAAAAJ&hl=en"><i class="fab fa-google"></i></a>
-        </li>
-        <li>
-          <a href="https://x.com/jeanpeic"><i class="fab fa-twitter"></i></a>
-        </li>
-        <li>
-          <!-- <a href="https://www.instagram.com/jeanpeic/"><i class="fab fa-instagram"></i></a> -->
-          <a href="https://maps.app.goo.gl/j2b843PFYf45TvQdA"><i class="fab fa-instagram"></i></a>
-          
-          
-          
-        </li>
-        <li>
-          <!-- <a href="https://www.linkedin.com/in/jeanpeicchou"><i class="fab fa-linkedin"></i></a> -->
-          <a href="https://maps.app.goo.gl/xzRT5ThkifnnySfU8"><i class="fab fa-linkedin"></i></a>
-          
-        </li>
-      </ul>
-    </footer>
+    </div>
+    <div class="nickname">*I also go by JP</div>
+    <div class="scroll-indicator">
+      <p>down here for more</p>
+      <img src="assets/scribbles/arrow_black.png" alt="Scroll down arrow" class="arrow-icon">
+    </div>
   </div>
   
+  <div class="banner-section">
+    <img src="assets/banner.gif" alt="Horizontal Banner" class="banner-image">
+  </div>
+  
+  <div class="workplace-section">
+    <img src="assets/scribbles/workplace.png" alt="Workplace Image" class="workplace-image">
+  </div>
+  
+  <div class="bio-section">
+    <div class="comment-section">
+      <div class="comment-container">
+        <img src="assets/scribbles/hear.png" alt="Hear Image" class="comment-image">
+      </div>
+    </div>
+    
+    <div class="bio-text">
+      <h1 class="bio-heading">Is cinema dead?</h1>
+      <p>New tools are giving us new ways to tell and experience stories, and I wonder what the future of cinema might look like. Hopefully, it's a future where more people can tell their own stories. Where those stories are shared, valued, and maybe even help us reimagine the world around us.</p>
 
+      <p>My research with <a href="https://graphics.stanford.edu/~maneesh/" target="_blank">Prof. Maneesh Agrawala</a> aims to nudge cinema in this direction, ever so slightly. More broadly, I'm interested in creating spaces where the worlds of technology and film can meet and discuss these things.</p>
+    </div>
+  </div>
+  
+  <div class="research-section">
+    <h2 class="research-heading">Previous research work</h2>
+    <ul class="publication-list">
+      <li class="publication">
+        <div class="publication-title">ScriptViz: A Visualization Tool to Aid Scriptwriting based on a Large Movie Database</div>
+        <div class="publication-authors">Anyi Rao, Jean-Peïc Chou, Maneesh Agrawala</div>
+        <div class="publication-venue">UIST 2024</div>
+        <div class="publication-links">
+          <a href="https://dl.acm.org/doi/abs/10.1145/3654777.3676402" target="_blank">[paper]</a>
+          <a href="https://virtualfilmstudio.github.io/projects/scriptviz/" target="_blank">[project]</a>
+          <a href="https://arxiv.org/abs/2410.03224" target="_blank">[arxiv]</a>
+        </div>
+      </li>
+      <li class="publication">
+        <div class="publication-title">Talestream: Supporting story ideation with trope knowledge</div>
+        <div class="publication-authors">Jean-Peïc Chou, Alexa Siu, Nedim Lipka, Ryan Rossi, Franck Dernoncourt, Maneesh Agrawala</div>
+        <div class="publication-venue">UIST 2023</div>
+        <div class="publication-links">
+          <a href="https://dl.acm.org/doi/abs/10.1145/3586183.3606807" target="_blank">[paper]</a>
+          <a href="https://jeanpeic.github.io/talestream-website/" target="_blank">[project]</a>
+        </div>
+      </li><li class="publication">
+        <div class="publication-title">Computational tracking of head pose through 500 years of fine-art portraiture</div>
+        <div class="publication-authors">Jean-Peïc Chou, David Stork</div>
+        <div class="publication-venue">CVAA 2023</div>
+        <div class="publication-links">
+          <a href="https://library.imaging.org/ei/articles/35/13/CVAA-211" target="_blank">[paper]</a>
+        </div>
+      </li><li class="publication">
+        <div class="publication-title">Structures in Tropes Networks: Toward a Formal Story Grammar</div>
+        <div class="publication-authors">Jean-Peïc Chou, Marc Christie</div>
+        <div class="publication-venue">ICCC 2021</div>
+        <div class="publication-links">
+          <a href="https://inria.hal.science/hal-03777738/" target="_blank">[paper]</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Include footer -->
+  <div id="footer-container"></div>
+  
+  <script>
+    // Load the footer
+    $(function() {
+      $("#footer-container").load("src/footer.html");
+    });
+  </script>
 </body>
 
 </html>
