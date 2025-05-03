@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jeanpeic.github.io/sitemap.xml 
