@@ -42,6 +42,22 @@
   <!-- Javascript -->
   <script src="src/app.js"></script>
   
+  <!-- Breadcrumb structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://jeanpeic.github.io/"
+      }
+    ]
+  }
+  </script>
+  
   <!-- Footer CSS -->
   <link rel="stylesheet" href="src/footer.css">
   
@@ -423,10 +439,11 @@
   
   <div class="hero-section">
     <div class="name-container">
-      <img src="assets/scribbles/jeanpeic.png" alt="Jean-Peïc Chou" class="name-image">
+      <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Jean-Peïc Chou</h1>
+      <img src="assets/scribbles/jeanpeic.png" alt="Jean-Peïc Chou - Name written in handwritten style" class="name-image">
       <div class="tagline">
-        <p>PhD student in Computer Science at Stanford</p>
-        <p>& Tech Curator at the Busan International Film Festival</p>
+        <h1 style="font-size: inherit; font-weight: inherit; margin: 0; line-height: inherit;">PhD student in Computer Science at Stanford</h1>
+        <h1 style="font-size: inherit; font-weight: inherit; margin: 0; line-height: inherit;">& Tech Curator at the Busan International Film Festival</h1>
       </div>
     </div>
     <div class="nickname">*I also go by JP</div>
