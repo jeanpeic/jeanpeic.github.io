@@ -45,18 +45,34 @@
   <!-- Javascript -->
   <script src="src/app.js"></script>
   
-  <!-- Breadcrumb structured data -->
-  <script type="application/ld+json">
+<!-- Enhanced Schema.org structured data for personal profile -->
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
+    "@type": "Person",
+    "name": "Jean-Peïc Chou",
+    "givenName": "Jean-Peïc",
+    "familyName": "Chou",
+    "alternateName": ["JP", "Jean Peic Chou", "jeanpeic"],
+    "description": "PhD Student in Computer Science at Stanford University and Tech Curator at the Busan International Film Festival",
+    "jobTitle": ["PhD Student", "Tech Curator", "Researcher"],
+    "worksFor": [
       {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://jeanpeic.github.io/"
+        "@type": "Organization",
+        "name": "Stanford University",
+        "department": "Computer Science"
+      },
+      {
+        "@type": "Organization", 
+        "name": "Busan International Film Festival"
       }
+    ],
+    "knowsAbout": ["Computer Science", "Film Technology", "Cinema Research", "Computational Storytelling", "AI in Cinema", "Videography"],
+    "url": "https://jeanpeic.github.io/",
+    "mainEntityOfPage": "https://jeanpeic.github.io/",
+    "sameAs": [
+      "https://virtualfilmstudio.github.io/projects/scriptviz/",
+      "https://jeanpeic.github.io/talestream-website/"
     ]
   }
   </script>
@@ -438,37 +454,6 @@
 </head>
 
 <body class="light-theme">
-  <!-- Enhanced Schema.org structured data for personal profile -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Jean-Peïc Chou",
-    "givenName": "Jean-Peïc",
-    "familyName": "Chou",
-    "alternateName": ["JP", "Jean Peic Chou", "jeanpeic"],
-    "description": "PhD Student in Computer Science at Stanford University and Tech Curator at the Busan International Film Festival",
-    "jobTitle": ["PhD Student", "Tech Curator", "Researcher"],
-    "worksFor": [
-      {
-        "@type": "Organization",
-        "name": "Stanford University",
-        "department": "Computer Science"
-      },
-      {
-        "@type": "Organization", 
-        "name": "Busan International Film Festival"
-      }
-    ],
-    "knowsAbout": ["Computer Science", "Film Technology", "Cinema Research", "Computational Storytelling", "AI in Cinema", "Videography"],
-    "url": "https://jeanpeic.github.io/",
-    "mainEntityOfPage": "https://jeanpeic.github.io/",
-    "sameAs": [
-      "https://virtualfilmstudio.github.io/projects/scriptviz/",
-      "https://jeanpeic.github.io/talestream-website/"
-    ]
-  }
-  </script>
   <a href="videos.html" class="videography-link"><i class="fas fa-camera"></i> View videography</a>
   
   <div class="hero-section">
