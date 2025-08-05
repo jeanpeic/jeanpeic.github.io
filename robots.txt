@@ -1,3 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /assets/scribbles/
+
+# Specifically block image crawlers
+User-agent: Googlebot-Image
+Disallow: /assets/scribbles/
+
 Sitemap: https://jeanpeic.github.io/sitemap.xml 
